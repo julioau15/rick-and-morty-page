@@ -1,4 +1,4 @@
-
+'use strict'
 
 // volta todos os dados
 const getDataCharacter = async (page = 1) => {
@@ -45,13 +45,16 @@ const filtrarEspecie = async (especie, data) => {
 }
 
 // filtro completo
-const filtrarDados = async (status, especie, data) => {
-    let dadosEspecie = await filtrarEspecie(especie)
-    let dadosStatus = await filtrarStatus(status)
+export const filtrarDados = async (status, especie, page) => {
+    let data = await getDataCharacter(page)
+    let dadosEspecie = await filtrarEspecie(especie, data)
+    let dadosStatus = await filtrarStatus(status, data)
     let dadosFiltrados = []
     let encontrado = false
 
-
+    if(!dadosEspecie || !dadosStatus)
+        return encontrado
+    
     dadosEspecie.forEach(dado => {
         if(dadosStatus.toString().toLowerCase().includes(String(dado).toLowerCase())){
             dadosFiltrados.push(dado)
