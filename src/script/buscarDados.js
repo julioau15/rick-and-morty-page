@@ -13,6 +13,7 @@ const filtrarStatus = async (status, data) => {
     let dados = data.results
     let dadosStatus = []
     let encontrado = false
+    
     dados.forEach(dado => {
         if(String(dado.status).toLowerCase() == String(status).toLowerCase()){
             dadosStatus.push(dado)
@@ -31,6 +32,7 @@ const filtrarEspecie = async (especie, data) => {
     let dados = data.results
     let dadosEspecie = []
     let encontrado = false
+
     dados.forEach(dado => {
         if(String(dado.species).toLowerCase() == String(especie).toLowerCase()){
             dadosEspecie.push(dado)
@@ -47,6 +49,11 @@ const filtrarEspecie = async (especie, data) => {
 // filtro completo
 export const filtrarDados = async (status, especie, page) => {
     let data = await getDataCharacter(page)
+
+    if(status == null || status == '' || status == undefined ||
+      especie == null || especie == ''|| especie == undefined)
+            return data.results
+
     let dadosEspecie = await filtrarEspecie(especie, data)
     let dadosStatus = await filtrarStatus(status, data)
     let dadosFiltrados = []

@@ -6,7 +6,7 @@ const selectStatus = document.getElementById('select-status').value
 const selectSpecies = document.getElementById('select-species').value
 const cardContainer = document.getElementById('card-container')
 
-const dados = await filtrarDados('alive','human', 1)
+const dados = await filtrarDados(selectStatus,selectSpecies, 1)
 
 const montarCard = (dados) => {
     let card = document.createElement('div')
