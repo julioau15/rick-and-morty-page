@@ -11,6 +11,7 @@
     --secondary-color:#FFFFFF;
     --tertiary-color:#B7B7B7;
     --border-color:#1A1A3F;
+    --status-color:#000000a8;
     --card-width:288px;
     --card-height:352px;
 }
@@ -114,6 +115,7 @@ select{
 }
 
 .card{
+    position: relative;
     max-width: var(--card-width);
     max-height: var(--card-height);
     background-color: var(--background-card);
@@ -138,12 +140,19 @@ select{
     border-bottom: 2px solid var(--border-color);
 }
 
-.status{
+.card::before{
+    content: attr(data-status);
     width: 84px;
     height: 34px;
+    background-color: var(--status-color);
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    border-radius: 15px;
 }
 
 .change-page{

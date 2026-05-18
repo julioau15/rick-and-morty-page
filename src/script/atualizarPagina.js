@@ -12,6 +12,7 @@ const montarCard = (dados) => {
     name.textContent = dados.name
     img.src = dados.image
     img.alt = `imagem da personagem ${dados.name}.`
+    card.setAttribute('data-status', dados.status)
 
     container.replaceChildren(name)
     card.replaceChildren(img, container)
